@@ -1,23 +1,20 @@
 import logo from './logo.svg';
 import './App.css';
+import MapView from './Components/MapView';
+import Navbar from './Components/Navbar';
+import { useState } from 'react';
+import ThreeDMap from './Components/ThreeDMap';
 
 function App() {
+  const [place, setPlace] = useState(0.0);
+  // console.log(place)
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar place={place} setPlace={setPlace}/>
+      <div id="map">
+        {/* <MapView place={place} /> */}
+        <ThreeDMap/>
+      </div>
     </div>
   );
 }
