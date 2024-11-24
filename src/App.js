@@ -7,13 +7,14 @@ import ThreeDMap from './Components/ThreeDMap';
 
 function App() {
   const [place, setPlace] = useState(0.0);
+  const [data, setData] = useState('Not clicked')
   // console.log(place)
   return (
-    <div className="App">
-      <Navbar place={place} setPlace={setPlace}/>
-      <div id="map">
+    <div className="App"> 
+      <Navbar place={place} data={data} setPlace={setPlace}/>
+      <div id="map" >
         {/* <MapView place={place} /> */}
-        <ThreeDMap/>
+        <ThreeDMap setData={setData}/>
       </div>
     </div>
   );
