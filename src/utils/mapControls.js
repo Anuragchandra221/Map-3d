@@ -70,6 +70,11 @@ const addModel = (map, lng, lat)=>{
               );
 
               this.scene.add(modelScene)
+              // modelScene.traverse((child)=>{
+              //   if(child.isMesh){
+              //     child.userData.clickable = true
+              //   }
+              // })
              
               
               // bound = new THREE.Box3().setFromObject(modelScene)
@@ -85,16 +90,36 @@ const addModel = (map, lng, lat)=>{
           })
 
           this.renderer.autoClear = false
+          // window.addEventListener('click', (event)=>{
+          //   const mouse = new THREE.Vector2(
+          //         (event.clientX / window.innerWidth) * 2 - 1,
+          //         -(event.clientY / window.innerHeight) * 2 + 1
+          //     );
+          //     const raycaster = new THREE.Raycaster();
+          //     raycaster.setFromCamera(mouse, this.camera);
+          //     const intersects = raycaster.intersectObjects(this.scene.children);
+          //     console.log(intersects)
+
+          //     if (intersects.length > 0) {
+          //         alert('Model clicked!');
+          //     }
+          // })
         },
         render(gl, matrix){
         
           const m = new THREE.Matrix4().fromArray(matrix);
-          this.camera.projectionMatrix = m;
+          
+
+        this.camera.projectionMatrix = m;
+
+        // const cameraPosition = MercatorCoordinate.fromLngLat(map.getCenter(), 10); // Adjust Z for elevation
+        //     this.camera.position.set(cameraPosition.x, cameraPosition.y, cameraPosition.z + 10);
+
           this.renderer.resetState();
           this.renderer.render(this.scene, this.camera);
             console.log("render function")
           // Request a re-render
-        //  map.triggerRepaint();
+         map.triggerRepaint();
         }
       }
       return customLayer
